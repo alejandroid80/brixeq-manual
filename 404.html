@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Paso no encontrado | BRIXEQ</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    :root {
+      --bg-main: #0e1015;
+      --bg-card: #161922;
+      --bg-card-alt: #1d212d;
+      --bg-code: #0b0c10;
+      --border: #2a2f40;
+      --text-main: #e4e7f0;
+      --text-muted: #9aa2b8;
+      --accent-primary: #ff5e3a;
+      --accent-secondary: #38bdf8;
+      --accent-green: #34d399;
+      --accent-amber: #fbbf24;
+      --radius: 10px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(255, 94, 58, 0.09), transparent 55%);
+    }
+
+    main {
+      width: 100%;
+      max-width: 620px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .brand-badge {
+      background: var(--accent-primary);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      letter-spacing: 0.06em;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .code-404 {
+      font-family: var(--font-mono);
+      font-size: clamp(3.2rem, 14vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      color: var(--accent-primary);
+      text-shadow: 0 0 32px rgba(255, 94, 58, 0.35);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      background-color: var(--bg-code);
+      color: var(--accent-amber);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      word-break: break-all;
+    }
+
+    .hint {
+      background-color: var(--bg-code);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-secondary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 1.4rem 0 1.9rem;
+    }
+
+    .hint strong {
+      color: var(--accent-secondary);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      padding: 0.6rem 1.05rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: transform 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      border-color: var(--accent-primary);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card-alt);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent-secondary);
+    }
+
+    .btn-primary:hover {
+      background-color: #ff7155;
+      border-color: #ff7155;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    footer a {
+      color: var(--accent-secondary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand">
+      <span class="brand-badge">BRICK</span>
+      <h1>BRIXEQ</h1>
+    </div>
+
+    <div class="code-404">404</div>
+    <div class="subtitle">Paso no encontrado</div>
+
+    <h2>Este paso no existe en el patrón</h2>
+    <p>
+      La dirección que has abierto no corresponde a ninguna sección del manual
+      ni de la guía. Puede que el enlace tenga una errata o que la página se
+      haya movido.
+    </p>
+
+    <div class="hint">
+      <strong>Atajo:</strong> si buscabas la guía del loop LoFi, la ruta correcta
+      es <code>guia-lofi.html</code> (con guion y sin acentos).
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/brixeq-manual/">Manual completo</a>
+      <a class="btn btn-secondary" href="/brixeq-manual/guia-lofi.html">Guía LoFi</a>
+    </div>
+
+    <footer>
+      Documentación basada en
+      <a href="https://github.com/boorch/brixeq-pak" target="_blank" rel="noopener">brixeq-pak</a>
+      por <strong>boorch</strong> · adaptación de
+      <a href="https://github.com/alejandroid80">alejandroid80</a>
+    </footer>
+  </main>
+</body>
+</html>
