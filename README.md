@@ -48,7 +48,7 @@ Una guía paso a paso para crear un loop LoFi en BRIXEQ en un solo compás:
 - **Escala:** Re menor natural o Dórico
 - **Patrón:** Bombo en pasos 0·6·10, caja con Snap, charles en pasos pares, acordes Re m9 (paso 0) / Sol m9 (paso 8), bajo Re3/Sol3
 - **Filtro:** Hacia abajo (LP) en bombo y acordes; apertura media en charles
-- **Selleo:** `R3` → Delay ping-pong 1/8 + Reverb sala media, Sidechain desde T1 (bombo)
+- **Efectos (R3):** Delay ping-pong 1/8 + Reverb sala media, Sidechain desde T1 (bombo)
 - **Variaciones:** Copiar patrón a otra ranura (`R1+A`, `R1+B`) y crear variación B en escena distinta (`B` en la tira inferior)
 
 Verla online: https://alejandroid80.github.io/brixeq-manual/guia-lofi.html
@@ -56,6 +56,14 @@ Verla online: https://alejandroid80.github.io/brixeq-manual/guia-lofi.html
 ## Créditos
 
 Manual creado a partir del proyecto **BRIXEQ** para TrimUI Brick. El diseño y la documentación originales provienen del repositorio [https://github.com/boorch/brixeq-pak](https://github.com/boorch/brixeq-pak) por **boorch**. Esta adaptación al español y la guía LoFi son obra de **alejandroid80**.
+
+## Aviso sobre el uso de IA
+
+La traducción del manual al español y la guía LoFi se han elaborado con **asistencia de un modelo de lenguaje** (OpenCode), partiendo de la documentación original de boorch y con revisión manual.
+
+Aunque cada sección se ha comprobado, un texto generado con IA puede contener imprecisiones, erratas o parámetros que no coincidan exactamente con lo que muestra tu unidad. Si algo no encaja con tu TrimUI Brick, fíate de la máquina y del material original antes que de esta documentación. Las correcciones son bienvenidas.
+
+> *Disclaimer: the Spanish translation and the LoFi guide were produced with AI assistance and manually reviewed. They may contain inaccuracies; always verify against the device.*
 
 ## Notas
 
