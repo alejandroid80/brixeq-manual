@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRIXEQ — Guía LoFi</title>
+  <style>
+    :root {
+      --bg-main: #0e1015;
+      --bg-card: #161922;
+      --bg-card-alt: #1d212d;
+      --bg-code: #0b0c10;
+      --border: #2a2f40;
+      --text-main: #e4e7f0;
+      --text-muted: #9aa2b8;
+      --accent-primary: #ff5e3a;
+      --accent-secondary: #38bdf8;
+      --accent-green: #34d399;
+      --accent-purple: #a78bfa;
+      --accent-amber: #fbbf24;
+      --radius: 10px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: 280px;
+      background-color: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 1.75rem 1.25rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .brand-badge {
+      background: var(--accent-primary);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      letter-spacing: 0.06em;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-list a {
+      display: block;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-list a:hover {
+      background-color: var(--bg-card-alt);
+      color: var(--text-main);
+      transform: translateX(3px);
+    }
+
+    /* Main Content */
+    main.content {
+      flex: 1;
+      max-width: 920px;
+      padding: 2.5rem 3rem 5rem;
+      margin: 0 auto;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #1b1f2c 0%, #131620 100%);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-primary);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    header.hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    header.hero p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.1rem;
+    }
+
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background-color: var(--bg-code);
+      border: 1px solid var(--border);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    section {
+      margin-bottom: 2.8rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    h2.sec-title {
+      font-size: 1.45rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h2.sec-title span.num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: var(--bg-card-alt);
+      color: var(--accent-primary);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      margin: 1.35rem 0 0.55rem;
+    }
+
+    p {
+      margin-bottom: 0.9rem;
+    }
+
+    ul, ol {
+      margin: 0.6rem 0 1.1rem 1.4rem;
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    /* Keycaps / Buttons */
+    kbd {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      background-color: #252a3a;
+      border: 1px solid #3d445c;
+      border-bottom-width: 3px;
+      border-radius: 5px;
+      padding: 0.08rem 0.45rem;
+      line-height: 1.3;
+      vertical-align: middle;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      background-color: var(--bg-code);
+      color: var(--accent-amber);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background-color: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin: 1rem 0 1.25rem;
+    }
+
+    /* Cards & Callouts */
+    .callout {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-secondary);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin: 1.1rem 0;
+    }
+
+    .callout.tip {
+      border-left-color: var(--accent-green);
+    }
+
+    .callout.warn {
+      border-left-color: var(--accent-amber);
+    }
+
+    .callout strong.label {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+      color: var(--accent-secondary);
+    }
+
+    .callout.tip strong.label { color: var(--accent-green); }
+    .callout.warn strong.label { color: var(--accent-amber); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      color: var(--accent-secondary);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--bg-card-alt);
+    }
+
+    /* Flex utilities */
+    .flex { display: flex; }
+    .justify-between { justify-content: space-between; }
+    .align-center { align-items: center; }
+    .gap-1 { gap: 1rem; }
+    .gap-05 { gap: 0.5rem; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .mt-1 { margin-top: 1rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .pt-1 { padding-top: 1rem; }
+    .pb-1 { padding-bottom: 1rem; }
+
+    /* Badge */
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--bg-code);
+      color: var(--accent-amber);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-badge">BRIXEQ</span>
+      <div>
+        <h1>Manual de Usuario</h1>
+        <div class="brand-sub">Guía LoFi — Español</div>
+      </div>
+    </div>
+
+    <nav class="nav-list">
+      <a href="#preparacion">Preparación de la escena</a>
+      <a href="#patron">Patrón base (0–15)</a>
+      <a href="#ajustes">Ajustes LoFi</a>
+      <a href="#master">Master Bus</a>
+      <a href="#acordes">Acorde Re m9</a>
+      <a href="#problemas">Solución de problemas</a>
+      <a href="#analisis">Resultados de análisis</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="hero">
+      <h2>Guía rápida: loop LoFi en BRIXEQ</h2>
+      <p>Crea un bucle de batería + acordes con cuerpo LoFi en minutos. Basado en el manual oficial (HTML) y ajustado por análisis de frecuencia.</p>
+    </header>
+
+    <section id="preparacion">
+      <h2 class="sec-title"><span class="num">01</span> Preparación de la escena</h2>
+
+      <p>Antes de colocar notas, configura el proyecto para que el loop respire lento y suene "viejillo".</p>
+
+      <div class="callout tip">
+        <strong class="label">BPM</strong>
+        <p>72–78. El LoFi respira despacio. Cuanto más lento, más espacio para el groove.</p>
+      </div>
+
+      <div class="callout tip">
+        <strong class="label">Shuffle (Swing)</strong>
+        <p>56–60 %. Retrasa los pasos pares para ese groove humano estilo MPC. `B + ←/→` ajusta ±1 %; `B + ↑/↓` ±5 %; `A` resetea al 50 %.</p>
+      </div>
+
+      <div class="callout tip">
+        <strong class="label">Escala</strong>
+        <p>Raíz <strong>Re</strong>, modo <strong>Dórico</strong> (o <strong>menor natural</strong>). Todas las notas se ajustan automáticamente. Si quieres escribir acordes libres (<code>Chromatic</code>), desactiva el ajuste en la barra superior.</p>
+      </div>
+
+      <div class="callout tip">
+        <strong class="label">Longitud</strong>
+        <p>16 pasos en el pie de pista. Los patrones y escenas van de 0 a F (hex), así que el paso 0 es el primer pulso y el 15 el último antes de repetir.</p>
+      </div>
+    </section>
+
+    <section id="patron">
+      <h2 class="sec-title"><span class="num">02</span> Patrón base (pasos 0–15)</h2>
+
+      <p>Cuenta los pasos del 0 al 15. <code>●</code> = paso con nota, <code>·</code> = paso vacío.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Pista</th>
+            <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>T1 BD</strong></td>
+            <td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td>
+          </tr>
+          <tr>
+            <td><strong>T2 SD</strong></td>
+            <td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>○</td><td>·</td>
+          </tr>
+          <tr>
+            <td><strong>T3 CY + NOIZ</strong></td>
+            <td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>·</td><td>●</td><td>●</td>
+          </tr>
+          <tr>
+            <td><strong>T4 acordes</strong></td>
+            <td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td>
+          </tr>
+          <tr>
+            <td><strong>T5 bajo</strong></td>
+            <td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td><td>·</td><td>·</td><td>●</td><td>·</td><td>·</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><code>○</code> = paso fantasma con probabilidad 25–50 % (la caja aparece solo a veces).</p>
+
+      <p><strong>Notas concretas:</strong></p>
+      <ul>
+        <li><strong>Bajo (T5):</strong> Re2 · La1 · Fa2 · Do2 — armonía menor con un salto que evita lo previsible.</li>
+        <li><strong>Acordes (T4):</strong> Re m9 en el paso 0 y Sol m9 en el paso 8. Mismo juego de huecos (3·7·A·E), solo cambia la nota base.</li>
+      </ul>
+    </section>
+
+    <section id="ajustes">
+      <h2 class="sec-title"><span class="num">03</span>Ajustes LoFi</h2>
+
+      <h3>Filtro — el paso más importante</h3>
+      <ul>
+        <li>Mantén <kbd>L1</kbd>, elige <strong>FILTER</strong> en el panel izquierdo y suelta. Baja el barrido hacia <strong>abajo</strong> (zona LP / paso bajo). Sube un poco la <strong>resonancia (Q)</strong>.</li>
+        <li>Repite en T4 y T5. Deja el bombo casi sin filtrar para que conserve pegada.</li>
+      </ul>
+
+      <h3>Saturación</h3>
+      <ul>
+        <li>En T4 y T5, panel derecho (<kbd>R1</kbd>) → sube <strong>Overdrive</strong> hasta que empiece a "arenar". En VA/STRING/PD es el mismo control.</li>
+      </ul>
+
+      <h3>Humanizar</h3>
+      <ul>
+        <li><strong>Microtime</strong> (panel izquierdo → <kbd>RULE</k>: caja y charles un <strong>+5 a +8 %</strong> tarde. El microtime va de <code>▲50 %</code> a <code>▼50 %</code>.</li>
+        <li><strong>Probabilidad</strong>: charles al <strong>75–85 %</strong>, la caja fantasma al <strong>25–50 %</strong>.</li>
+        <li><strong>Volumen</strong> (<kbd>OUT</k>): alterna pasos fuertes y flojos en T3. Un charles a volumen distinto en cada paso vale más que cualquier plugin.</li>
+      </ul>
+
+      <h3>Vinilo</h3>
+      <ul>
+        <li>En T3, en pasos sin charles, cambia el motor a <strong>NOIZ</strong>: ruido <strong>Pink</strong> o <strong>Brown</strong>, volumen muy bajo, <strong>Pan</strong> ancho. Como NOIZ ignora la escala y la transposición, nunca se desafina.</li>
+      </ul>
+
+      <h3>Undo / Redo</h3>
+      <ul>
+        <li><kbd>L1</kbd> + <kbd>L2</kbd>: Deshacer (Undo).</li>
+        <li><kbd>R1</kbd> + <kbd>R2</kbd>: Rehacer (Redo).</li>
+      </ul>
+    </section>
+
+    <section id="master">
+      <h2 class="sec-title"><span class="num">04</span> Master Bus (botón <kbd>R3</kbd>)</h2>
+
+      <div class="grid-2">
+
+        <div class="card">
+          <h3>Delay</h3>
+          <ul>
+            <li>Ping-pong sincronizado, <strong>1/8</strong>, feedback medio-bajo, <strong>tono oscuro</strong>, envío <strong>→ rvb</strong> alto.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Reverb</h3>
+          <ul>
+            <li>Sala media, cola <strong>corta</strong>, <strong>tono bajo</strong> (nada de brillo), difusión alta.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="callout warn">
+        <strong class="label">Sidechain (SC src)</strong>
+        <p><strong>T1</strong> (el bombo) → comprime al resto de la mezcla en cada golpe para lograr el efecto <em>pumping</em>. Ganancia (<kbd>Master Out</k>) con headroom; el LoFi satura antes de clipar.</p>
+      </div>
+
+      <div class="callout tip">
+        <strong class="label">Envíos</strong>
+        <ul>
+          <li>Delay y Reverb solo en T4 (acordes). Bombo y bajo, secos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="acordes">
+      <h2 class="sec-title"><span class="num">05</span>Acorde Re m9 (paso 0) y Sol m9 (paso 8)</h2>
+
+      <p>Cada hueco del parámetro <strong>Acorde</strong> del panel izquierdo es un <strong>intervalo en semitonos</strong>, codificado en <strong>hexadecimal</strong> (0–F, igual que patrones y escenas).</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Hueco</th><th>Valor hex</th><th>Semitonos</th><th>Nota en Re m9</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>3</strong></td><td>3ª menor</td><td>Fa</td></tr>
+          <tr><td>2</td><td><strong>7</strong></td><td>5ª justa</td><td>La</td></tr>
+          <tr><td>3</td><td><strong>A</strong></td><td>7ª menor (10)</td><td>Do</td></tr>
+          <tr><td>4</td><td><strong>E</strong></td><td>9ª mayor (14)</td><td>Mi</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Re m9:</strong> Re · Fa · La · Do · Mi (las 5 notas llenan las 5 ranuras: 1 nota base + 4 huecos).</p>
+      <p><strong>Sol m9:</strong> Sol · Sib · Re · Fa · La. Mismo juego de huecos (3·7·A·E), solo cambia la base a <strong>Sol</strong>. Los dos acordes comparten la pila de intervalos, así que te ahorras aprender cuatro valores distintos.</p>
+
+      <div class="callout tip">
+        <strong class="label">Escala</strong>
+        <p>Usa <strong>Re menor natural</strong> (Re Mi Fa Sol La <strong>Si</strong> Do) para que el <strong>Si natural</strong> coincida con el acorde. Si usas <strong>Dórico</strong>, el <strong>Si</strong> se alzará a <strong>Sib</strong> automáticamente, dándole color "dreamy".</p>
+        <p>Si quieres total libertad, pon la escala en <strong>Chromatic</strong> (desactiva el ajuste automático).</p>
+      </div>
+
+      <div class="callout warn">
+        <strong class="label">Cuidado con +2, +3, +5, +7</strong>
+        <p>Eso que aparece abajo cuando los huecos están vacíos no es un acorde: 2ª + 3ª mínima = un racimo disonante. Sobrescribe los cuatro huecos con <strong>3, 7, A, E</strong> y listo.</p>
+      </div>
+
+      <h3>Cómo crearlos en la Brick</h3>
+      <ol>
+        <li>Paso 0: crea la nota con <kbd>B + ↓</kbd>. Cambia la nota base a <strong>Re</strong> con <kbd>B + ←/→</kbd>. Mantén <kbd>L1</kbd>, ve a <strong>PITCH → Acorde</strong> y suelta. Rellena los 4 huecos: <kbd>B + D-pad</kbd> → <strong>3</strong>, <strong>7</strong>, <strong>A</strong>, <strong>E</strong>.</li>
+        <li>Paso 8: <kbd>A</kbd> dos veces sobre el paso 0 (corta y pega el sonido completo). La base viene puesta; solo cambia la nota a <strong>Sol</strong> y los huecos siguen siendo 3·7·A·E.</li>
+      </ol>
+
+      <div class="callout tip">
+        <strong class="label">Verificación</strong>
+        <p>Un toque rápido en <kbd>B</k> debe sonar <strong>triste y jazzístico</strong>, no áspero. Si suena raro, revisa que la escala no esté forzando un <code>Sib</code> cuando querías <code>Si</code>.</p>
+      </div>
+    </section>
+
+    <section id="problemas">
+      <h2 class="sec-title"><span class="num">06</span> Solución de problemas rápidos</h2>
+
+      <h3>Bombo sin cuerpo</h3>
+      <ul>
+        <li><strong>Filtro:</strong> <kbd>L1</kbd> → <strong>FILTER</strong> hacia <strong>abajo</strong> (LP) o levemente abierto. Si está en HP (paso alto), quita el cuerpo.</li>
+        <li><strong>Decay:</strong> <kbd>R1</kbd> en T1 → sube <strong>Decay</strong> hasta que el bombo "respire" entre golpes.</li>
+        <li><strong>Tuning:</strong> Bajar a <strong>Re2</strong> (~73 Hz) para que bombo y bajo no peleen por el mismo espacio.</li>
+        <li><strong>Snap:</strong> Dejar en medio-bajo. Snap alto = clic seco = sin cuerpo.</li>
+      </ul>
+
+      <h3>Caja que suena a tom</h3>
+      <ul>
+        <li><strong>Snap:</strong> <kbd>R1</kbd> en T2 → sube <strong>Snap</strong>. Eso es lo que diferencia a caja (ruido de bordes) de tom (solo tono).</li>
+        <li><strong>Decay:</strong> Bajar. Los toms resuenan; las cajas no.</li>
+        <li><strong>Color:</strong> Hacia el brillo. El cuerpo gana con lo oscuro, pero el "crack" necesita aire arriba.</li>
+        <li><strong>Filtro:</strong> No lo dejes todo en LP. Un poco arriba deja pasar los bordes.</li>
+      </ul>
+
+      <h3>Intercambio bombo/caja</h3>
+      <ul>
+        <li>Si subes Snap en SD y el bombo queda justo: bájale un poco el Decay del bombo o abre un poco el filtro LP del bombo.</li>
+        <li>La solución "dos capas": en T3, en pasos sin charles, motor <strong>NOIZ</strong> (ruido Pink/Brown, decay corto) para dar cuerpo y bordes al conjunto.</li>
+      </ul>
+    </section>
+
+    <section id="analisis">
+      <h2 class="sec-title"><span class="num">07</span> Resultados de análisis de audio</h2>
+
+      <p>Archivo: <strong>ALOFI_20261115_200508.wav</strong> vs <strong>ALOFI_20261115_203926.wav</strong>. 48 kHz, estéreo.</p>
+
+      <table>
+        <thead>
+          <tr><th Banda</th><th>Antes</th><th>Después</th><th>Cambio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bombo (30–70 Hz)</td><td>35.5 %</td><td>23.1 %</td><td>–12.4 pp</td></tr>
+          <tr><td>Caja (80–200 Hz)</td><td>20.8 %</td><td>11.2 %</td><td>–9.6 pp</td></tr>
+          <tr><td>Charlas (250–800 Hz)</td><td>14.3 %</td><td>49.3 %</td><td>+35.0 pp</td></tr>
+          <tr><td>Frecuencia dominante</td><td>66.0 Hz (= Re2)</td><td>349.4 Hz (= La5)</td><td>+3 octavas</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Diagnóstico:</strong> El segundo loop tiene más "crack" en la caja (Snap ↑) y menos cuerpo en el bombo (Filtro/Decay). Si te gusta el segundo, mantén los ajustes; si prefieres el primero, baja Snap y sube Decay/Bajale al filtro al bombo.</p>
+
+      <div class="callout tip">
+        <strong class="label">Para comparar tú mismo</strong>
+        <ol>
+          <li>Graba dos variantes desde la Brick: una con Snap/Decay bajados, otra con ellos subidos.</li>
+          <li>Mándame los dos WAV y te digo en porcentajes exactos quéchanged.</li>
+          <li>O haz el término medio: Snap +1, Decay +1, filtro LP suave en BD.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="grabar">
+      <h2 class="sec-title"><span class="num">08</span> Grabación y guardado</h2>
+
+      <ol>
+        <li><strong>Grabar audio (Master Bounce):</strong> <kbd>SELECT</kbd> → <strong>Start recording</strong>. Graba la salida estéreo en tiempo real (WAV 48 kHz / 16-bit) en <code>/mnt/SDCARD/BRIXEQ/RECORDINGS/</code>. Funciona independiente del transporte y descarta grabaciones de menos de 5 segundos.</li>
+        <li><strong>Guardar y cargar:</strong> <kbd>SELECT</kbd> → <strong>Save / Load</strong> en <code>/mnt/SDCARD/BRIXEQ/PROJECTS/</code> (.brixeq). Al estar fuera del directorio del paquete, las actualizaciones no borran tus proyectos ni grabaciones.</li>
+      </ol>
+
+      <div class="callout tip">
+        <strong class="label">Consejo de flujo</strong>
+        <p>Con el loop sonando bien, copia el patrón: <kbd>R1</kbd> + <kbd>A</kbd> (copia) y <kbd>R1</kbd> + <kbd>B</kbd> (pega en otra ranura). Ahí permite que entren más elementos o sube el Shuffle. Crea la variación B en <strong>otra escena</strong> (<kbd>B</k> en la tira inferior; entra al empezar el siguiente compás).</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

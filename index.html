@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRIXEQ — Manual de Usuario en Español</title>
+  <style>
+    :root {
+      --bg-main: #0e1015;
+      --bg-card: #161922;
+      --bg-card-alt: #1d212d;
+      --bg-code: #0b0c10;
+      --border: #2a2f40;
+      --text-main: #e4e7f0;
+      --text-muted: #9aa2b8;
+      --accent-primary: #ff5e3a;
+      --accent-secondary: #38bdf8;
+      --accent-green: #34d399;
+      --accent-purple: #a78bfa;
+      --accent-amber: #fbbf24;
+      --radius: 10px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    aside.sidebar {
+      width: 280px;
+      background-color: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 1.75rem 1.25rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .brand-badge {
+      background: var(--accent-primary);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      letter-spacing: 0.06em;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-list a {
+      display: block;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-list a:hover {
+      background-color: var(--bg-card-alt);
+      color: var(--text-main);
+      transform: translateX(3px);
+    }
+
+    /* Main Content */
+    main.content {
+      flex: 1;
+      max-width: 920px;
+      padding: 2.5rem 3rem 5rem;
+      margin: 0 auto;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #1b1f2c 0%, #131620 100%);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-primary);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    header.hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    header.hero p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.1rem;
+    }
+
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background-color: var(--bg-code);
+      border: 1px solid var(--border);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    section {
+      margin-bottom: 2.8rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    h2.sec-title {
+      font-size: 1.45rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h2.sec-title span.num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: var(--bg-card-alt);
+      color: var(--accent-primary);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--accent-secondary);
+      margin: 1.35rem 0 0.55rem;
+    }
+
+    p {
+      margin-bottom: 0.9rem;
+    }
+
+    ul, ol {
+      margin: 0.6rem 0 1.1rem 1.4rem;
+    }
+
+    li {
+      margin-bottom: 0.45rem;
+    }
+
+    /* Keycaps / Buttons */
+    kbd {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      background-color: #252a3a;
+      border: 1px solid #3d445c;
+      border-bottom-width: 3px;
+      border-radius: 5px;
+      padding: 0.08rem 0.45rem;
+      line-height: 1.3;
+      vertical-align: middle;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      background-color: var(--bg-code);
+      color: var(--accent-amber);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background-color: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin: 1rem 0 1.25rem;
+    }
+
+    /* Cards & Callouts */
+    .callout {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-secondary);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin: 1.1rem 0;
+    }
+
+    .callout.tip {
+      border-left-color: var(--accent-green);
+    }
+
+    .callout.warn {
+      border-left-color: var(--accent-amber);
+    }
+
+    .callout strong.label {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+      color: var(--accent-secondary);
+    }
+
+    .callout.tip strong.label { color: var(--accent-green); }
+    .callout.warn strong.label { color: var(--accent-amber); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+    }
+
+    .card h4 {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--accent-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0 1.35rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-card);
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: var(--bg-card-alt);
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      body {
+        flex-direction: column;
+      }
+      aside.sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      main.content {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-badge">TRIMUI BRICK</span>
+      <h1>BRIXEQ</h1>
+    </div>
+    <p class="brand-sub">Manual de usuario y guía rápida en español</p>
+    <ul class="nav-list">
+      <li><a href="#filosofia">1. Filosofía y flujo de trabajo</a></li>
+      <li><a href="#estructura">2. Estructura de un proyecto</a></li>
+      <li><a href="#primer-sonido">3. Tu primer sonido</a></li>
+      <li><a href="#interfaz">4. Pantalla principal (Editor)</a></li>
+      <li><a href="#navegacion">5. Navegación y reproducción</a></li>
+      <li><a href="#edicion">6. Edición, selección y Randomize</a></li>
+      <li><a href="#parametros">7. Parámetros de cada paso</a></li>
+      <li><a href="#motores">8. Los 8 motores de síntesis</a></li>
+      <li><a href="#patrones">9. Patrones, escalas y transposición</a></li>
+      <li><a href="#escenas">10. Escenas y Master Bus</a></li>
+      <li><a href="#moduladores">11. Moduladores (LFOs)</a></li>
+      <li><a href="#song-mode">12. Modo Canción (Song Mode)</a></li>
+      <li><a href="#archivos">13. Grabación y guardado</a></li>
+      <li><a href="#controles">14. Chuleta de controles</a></li>
+      <li><a href="#problemas">15. Solución de problemas</a></li>
+<li><a href="guia-lofi.html">Guía LoFi</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <header class="hero">
+      <h2>Guía Completa de BRIXEQ</h2>
+      <p>Groovebox y secuenciador por pasos portátil para TrimUI Brick. Cada paso guarda una instantánea completa del sintetizador, permitiendo que cada nota suene radicalmente distinta a la anterior.</p>
+      <div class="pill-row">
+        <span class="pill">5 Pistas Simultáneas</span>
+        <span class="pill">16 Patrones / Pista</span>
+        <span class="pill">16 Escenas / Proyecto</span>
+        <span class="pill">8 Motores de Síntesis</span>
+        <span class="pill">8 LFOs por Escena</span>
+      </div>
+    </header>
+
+    <!-- 1 -->
+    <section id="filosofia">
+      <h2 class="sec-title"><span class="num">01</span> Filosofía y flujo de trabajo</h2>
+      <p>En <strong>BRIXEQ</strong> no existen "bancos de sonidos" o <em>presets</em> tradicionales. Todo gira en torno al <strong>portapapeles</strong>. Si interiorizas este ciclo de 5 pasos, ya dominas la base del programa:</p>
+      <ol>
+        <li>Pulsa <kbd>B</kbd> sobre una celda vacía para colocar una nota básica por defecto (motor VA en Do4 / C4).</li>
+        <li><strong>Moldea el sonido</strong> usando los paneles laterales (tono, motor de síntesis, filtro, envolvente...).</li>
+        <li><strong>Pulsa <kbd>A</kbd> dos veces</strong> sobre ese paso terminado. El primer toque lo corta y el segundo lo vuelve a pegar en su sitio: el paso queda intacto, pero <strong>ahora tienes ese sonido completo guardado en tu portapapeles</strong>.</li>
+        <li>Muévete a otra celda vacía y <strong>pulsa <kbd>A</kbd></strong> para pegar el sonido; luego cambia solo la nota.</li>
+        <li>Repite: pegar, cambiar tono, retocar.</li>
+      </ol>
+      <div class="callout tip">
+        <strong class="label">Regla de oro</strong>
+        El portapapeles es tu instrumento y el botón <kbd>A</kbd> es la forma de tocarlo por toda la cuadrícula.
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="estructura">
+      <h2 class="sec-title"><span class="num">02</span> Estructura de un Proyecto</h2>
+      <p>Un proyecto se organiza en cuatro niveles jerárquicos. Lo más importante es recordar que <strong>los datos de sonido viven únicamente dentro de los Patrones</strong>:</p>
+<pre>PROYECTO
+├── PISTAS (5 voces simultáneas: T1, T2, T3, T4, T5)
+│    └── Cada pista tiene 16 PATRONES (del 0 al F)
+│         └── Cada patrón tiene 16 PASOS (cada paso es un sonido completo)
+│
+├── ESCENAS (16 escenas: de la 0 a la F)
+│    └── Solo guardan "punteros" (qué patrón suena en cada pista), qué pistas
+│        están muteadas, la escala musical, la transposición y los efectos Master.
+│
+└── MODO CANCIÓN / SONG (hasta 128 filas)
+     └── Una lista lineal que dispara escenas durante X compases.</pre>
+      <ul>
+        <li><strong>Los patrones se comparten:</strong> Si editas el Patrón 3 de la Pista 1, cambiará en todas las escenas que usen ese patrón.</li>
+        <li><strong>Las escenas son combinaciones:</strong> Puedes tener una estrofa (Escena 0) y un estribillo (Escena 1) usando exactamente los mismos patrones de batería y bajo, pero cambiando la escala, transportando las notas o modificando la reverb y el delay.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section id="primer-sonido">
+      <h2 class="sec-title"><span class="num">03</span> Tu primer sonido</h2>
+      <ol>
+        <li>Abre <strong>BRIXEQ</strong> (puedes saltar la pantalla inicial pulsando cualquier botón). Se cargará automáticamente tu último proyecto (o uno vacío la primera vez).</li>
+        <li>Pulsa <kbd>START</kbd> para arrancar el reloj (aún no sonará nada).</li>
+        <li>Mueve el cursor con la cruceta (<kbd>D-pad</kbd>) a cualquier celda de paso.</li>
+        <li>Mantén <kbd>B</kbd> y pulsa <kbd>↓</kbd> para colocar una nota. El paso se iluminará y sonará en cuanto pase el cabezal.</li>
+        <li>Repite en otros pasos y pistas. No hace falta parar la música para editar; todo funciona en tiempo real.</li>
+      </ol>
+    </section>
+
+    <!-- 4 -->
+    <section id="interfaz">
+      <h2 class="sec-title"><span class="num">04</span> La Pantalla Principal (Editor)</h2>
+      <ul>
+        <li><strong>Barra superior (Topbar):</strong> Nombre del proyecto (izquierda), cuantizador de escala, BPM, <em>Shuffle</em> (swing), icono de Moduladores e icono de Master FX (derecha).</li>
+        <li><strong>Filas de pistas (T1 a T5):</strong> Cabecera de pista (muteo y espectro visual), columna de selección de patrones (<code>0–F</code>), la <strong>cuadrícula de 16 pasos</strong> y el pie de pista (longitud, dirección y divisor de reloj).</li>
+        <li><strong>Paneles laterales (Decks):</strong> Al situarte sobre un paso, aparecen paneles a ambos lados. El <strong>panel izquierdo</strong> tiene los parámetros comunes (tono, reglas, envolvente, filtro, salida) y el <strong>panel derecho</strong> tiene los controles propios del motor de síntesis elegido.</li>
+        <li><strong>Tira de escenas:</strong> Las 16 escenas en la parte inferior.</li>
+      </ul>
+      <div class="callout">
+        <strong class="label">Cambio de vista (Botón X)</strong>
+        Pulsando <kbd>X</kbd> sobre la cuadrícula alternas entre tres vistas de columnas: <strong>Pasos &rarr; Patrones &rarr; Transposición</strong>.
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="navegacion">
+      <h2 class="sec-title"><span class="num">05</span> Navegación y Reproducción</h2>
+      <ul>
+        <li><kbd>D-pad</kbd>: Mueve el cursor celda por celda.</li>
+        <li><kbd>L1</kbd> / <kbd>R1</kbd> (mantener): Enfoca el panel izquierdo o el derecho. Al soltarlos, el cursor vuelve a la cuadrícula.</li>
+        <li><strong>Barra superior:</strong> Pulsa <kbd>↑</kbd> desde el paso superior de cualquier pista para subir a editar Escala, BPM, Shuffle, Moduladores o Master.</li>
+        <li><strong>Tira de escenas:</strong> Pulsa <kbd>↓</kbd> por debajo del último paso.</li>
+        <li><kbd>START</kbd>: Arranca la reproducción <strong>desde la posición actual del cursor</strong> (ideal para escuchar una sección). Si ya está sonando, la detiene.</li>
+        <li><kbd>SELECT</kbd> + <kbd>START</kbd>: Fuerza la reproducción desde el <strong>paso 0</strong> (el principio).</li>
+      </ul>
+    </section>
+
+    <!-- 6 -->
+    <section id="edicion">
+      <h2 class="sec-title"><span class="num">06</span> Edición, Selección y Randomize</h2>
+      
+      <h3>Controles básicos en la cuadrícula</h3>
+      <p>El gesto principal es mantener <kbd>B</kbd> + <kbd>D-pad</kbd> sobre un paso para cambiar el valor del parámetro activo (por defecto, la nota):</p>
+      <ul>
+        <li><kbd>B</kbd> + <kbd>↓</kbd> (en celda vacía): Crea un paso nuevo por defecto (Do4, motor VA).</li>
+        <li><kbd>B</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd> (en paso existente): Cambio brusco (ej. ±1 octava / ±12 semitonos).</li>
+        <li><kbd>B</kbd> + <kbd>←</kbd>/<kbd>→</kbd> (en paso existente): Cambio fino (ej. ±1 semitono).</li>
+      </ul>
+
+      <h3>Preescucha (Audition) y pasos Trigless</h3>
+      <ul>
+        <li><strong>Toque rápido en <kbd>B</kbd> (celda vacía):</strong> Crea una nota y la hace sonar al instante.</li>
+        <li><strong>Toque rápido en <kbd>B</kbd> (paso con nota):</strong> Hace sonar ese paso inmediatamente (ignorando muteos o probabilidad).</li>
+        <li><strong>Doble toque rápido en <kbd>B</kbd> (paso con nota):</strong> Convierte el paso en <strong>Trigless</strong> (sin disparo). Actúa como un <em>parameter lock</em>: modifica filtro, volumen, panorama o síntesis de la nota que ya estaba sonando <strong>sin volver a disparar el ataque</strong>.</li>
+      </ul>
+
+      <h3>Shuffle (Swing)</h3>
+      <p>En la barra superior (junto al BPM, por defecto <code>≈50%</code>). Retrasa los pasos pares para darle <em>groove</em> humano (hasta 65%, estilo MPC). <kbd>B</kbd> + <kbd>←</kbd>/<kbd>→</kbd> ajusta ±1 %; <kbd>B</kbd> + <kbd>↑</kbd>/<kbd>↓</kbd> ajusta ±5 %; <kbd>A</kbd> resetea al 50 %.</p>
+
+      <h3>Selección, Copiar, Pegar y Deshacer</h3>
+      <ul>
+        <li><strong>Mantener <kbd>Y</kbd> + <kbd>D-pad</kbd>:</strong> Arrastra una selección múltiple (1 toque = deseleccionar; 2 toques = toda la pista; 3 toques = toda la cuadrícula).</li>
+        <li><kbd>A</kbd>: Sobre un paso con datos <strong>corta</strong>; sobre una celda vacía <strong>pega</strong>; <strong>doble toque</strong> = copia.</li>
+        <li><kbd>L2</kbd> / <kbd>R2</kbd>: <kbd>L2</kbd> <strong>copia</strong> directamente sin borrar; <kbd>R2</kbd> <strong>pega sobrescribiendo</strong>.</li>
+        <li><kbd>L1</kbd> + <kbd>L2</kbd> / <kbd>R1</kbd> + <kbd>R2</kbd>: <strong>Deshacer (Undo)</strong> / <strong>Rehacer (Redo)</strong>.</li>
+      </ul>
+
+      <h3>Aleatorización inteligente (Randomize)</h3>
+      <p>Con una selección de 2 o más celdas activa, mantén <kbd>L1</kbd> + <kbd>R1</kbd> (verás <code>RANDOMIZE?</code>) y pulsa un botón frontal. Pulsaciones repetidas escalan la intensidad en un ciclo del <strong>25 % &rarr; 50 % &rarr; 75 % &rarr; 100 %</strong>:</p>
+      <ul>
+        <li><kbd>L1</kbd> + <kbd>R1</kbd> + <kbd>B</kbd> <strong>(Nivel 1 - Relleno):</strong> Rellena celdas vacías copiando el sonido de tu portapapeles. <em>(Es el único nivel que crea o borra pasos).</em></li>
+        <li><kbd>L1</kbd> + <kbd>R1</kbd> + <kbd>Y</kbd> <strong>(Nivel 2 - Mutación):</strong> Altera únicamente el parámetro activo en los pasos ya existentes sin tocar celdas vacías.</li>
+        <li><kbd>L1</kbd> + <kbd>R1</kbd> + <kbd>X</kbd> <strong>(Nivel 3 - Deriva):</strong> Varía notas (en escala), alterna motores de la misma familia y retoca el panel derecho.</li>
+        <li><kbd>L1</kbd> + <kbd>R1</kbd> + <kbd>A</kbd> <strong>(Nivel 4 - Deriva profunda):</strong> Todo lo del Nivel 3 más variaciones de filtro, envolvente, acordes, <em>slide</em> y <em>microtime</em>.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section id="parametros">
+      <h2 class="sec-title"><span class="num">07</span> Parámetros de cada Paso</h2>
+      <p>Mantén <kbd>L1</kbd> (panel izquierdo) o <kbd>R1</kbd> (panel derecho), elige el parámetro con la cruceta y suelta el botón para editarlo en cualquier paso con <kbd>B</kbd> + <kbd>D-pad</kbd>.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Panel Izquierdo (Común)</h4>
+          <ul>
+            <li><strong>PITCH:</strong> Nota base, <em>Acorde</em> (hasta 5 notas simultáneas), <em>Slide</em> (portamento) y barrido de tono (<em>Pitch Sweep</em>).</li>
+            <li><strong>RULE:</strong> Lógica condicional, <em>Probabilidad</em> (25–100 %) y <em>Microtime</em> (adelanto o retraso fino respecto a la rejilla: <code>▲50%</code> a <code>▼50%</code>).</li>
+            <li><strong>AMP ENV:</strong> Envolvente de volumen: <em>Attack</em>, <em>Hold</em> y <em>Decay</em>.</li>
+            <li><strong>FILTER:</strong> Barrido bipolar DJ (abajo Paso Bajo / LP, arriba Paso Alto / HP), resonancia (<em>Q</em>) y su envolvente.</li>
+            <li><strong>OUT:</strong> Volumen, panorama (<em>Pan</em>), envío a <em>Delay</em> y envío a <em>Reverb</em>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Panel Derecho (Según Motor)</h4>
+          <ul>
+            <li><strong>VA / STRING / PD:</strong> <em>Harmonics</em>, <em>Timbre</em>, <em>Morph</em>, <em>Overdrive</em> (+ <em>Excite</em> en String y <em>Blend</em> en PD).</li>
+            <li><strong>FM:</strong> <em>Ratio</em> del modulador, cantidad (<em>Amount</em>), realimentación (<em>Feedback</em>), ataque y caída.</li>
+            <li><strong>BD / SD / CY:</strong> Afinación (<em>Tuning</em>), pegada (<em>Snap</em>), caída (<em>Decay</em>) y color.</li>
+            <li><strong>NOIZ:</strong> Tipo de ruido (<em>Wide, Narrow, White, Pink, Brown</em>).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section id="motores">
+      <h2 class="sec-title"><span class="num">08</span> Los 8 Motores de Síntesis</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>VA (Analógico Virtual)</h4>
+          <p>Sintetizador clásico versátil con 3 macros de timbre y saturación.</p>
+        </div>
+        <div class="card">
+          <h4>FM (Modulación de Frecuencia)</h4>
+          <p>2 operadores con pegada percusiva, bajos metálicos y campanas.</p>
+        </div>
+        <div class="card">
+          <h4>STRING (Cuerda Física)</h4>
+          <p>Desde guitarras punteadas hasta campanas y colchones de cuerdas. <em>Excite</em> añade roce continuo de arco.</p>
+        </div>
+        <div class="card">
+          <h4>PD (Distorsión de Fase)</h4>
+          <p>Estilo Casio CZ. Deforma una onda senoidal para bajos ácidos y resonantes.</p>
+        </div>
+        <div class="card">
+          <h4>BD / SD / CY (Batería)</h4>
+          <p>Bombo (BD), caja (SD) y platos/charles (CY) analógicos estilo Roland TR-808/909.</p>
+        </div>
+        <div class="card">
+          <h4>NOIZ (Ruido)</h4>
+          <p>Generador de ruido moldeable con filtros para cajas lo-fi, viento o efectos.</p>
+        </div>
+      </div>
+      <div class="callout warn">
+        <strong class="label">Importante sobre baterías</strong>
+        Los motores <strong>BD, SD, CY y NOIZ ignoran la escala y la transposición</strong> de la escena para que tus percusiones nunca se desafinen solas al cambiar de acorde.
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section id="patrones">
+      <h2 class="sec-title"><span class="num">09</span> Patrones, Escalas y Transposición</h2>
+      <ul>
+        <li><strong>Ajustes del patrón (pie de pista):</strong> Longitud (1–16 pasos, ideal para polirritmias), dirección (adelante, atrás, ping-pong, aleatorio), divisor de reloj (1x a 8x más lento), motor por defecto y modo de filtro.</li>
+        <li><strong>Lanzamiento en vivo:</strong> En vista patrones (<kbd>X</kbd>), pulsa <kbd>B</kbd> sobre un patrón para ponerlo en cola; entrará al terminar el compás actual.</li>
+        <li><strong>Copiar / Pegar patrón:</strong> <kbd>R1</kbd> + <kbd>A</kbd> copia el patrón; <kbd>R1</kbd> + <kbd>B</kbd> lo pega en cualquier otra ranura o pista.</li>
+        <li><strong>Escala (barra superior):</strong> Eliges nota raíz y modo. Todas las notas se ajustan automáticamente a la escala (<em>Chromatic</em> desactiva el ajuste).</li>
+        <li><strong>Transposición (vista con <kbd>X</kbd>):</strong> Secuenciador por pista que suma o resta semitonos automáticamente según avanza la canción.</li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section id="escenas">
+      <h2 class="sec-title"><span class="num">10</span> Escenas y Master Bus</h2>
+      <h3>Escenas</h3>
+      <ul>
+        <li><strong>Mutear pistas:</strong> Pulsa <kbd>B</kbd> en la cabecera de una pista para silenciarla <strong>solo en la escena actual</strong>.</li>
+        <li><strong>Cambiar de escena:</strong> Pulsa <kbd>B</kbd> en la tira inferior para ponerla en cola (cambiará al empezar el siguiente compás).</li>
+        <li><strong>Copiar / Pegar escena:</strong> <kbd>R1</kbd> + <kbd>A</kbd> copia toda la escena (incluyendo moduladores y efectos) y <kbd>R1</kbd> + <kbd>B</kbd> la pega.</li>
+      </ul>
+      <h3>Master Bus (Icono derecho o botón R3)</h3>
+      <ul>
+        <li><strong>Delay:</strong> Eco estéreo <em>ping-pong</em> sincronizado al tempo, con <em>Feedback</em>, tono, modulación y envío directo a la reverb (<code>→ rvb</code>).</li>
+        <li><strong>Reverb:</strong> Reverberación estéreo con tamaño de sala, cola, difusión, modulación y tono.</li>
+        <li><strong>Master Out y Sidechain:</strong> <em>Gain</em> (volumen general), <em>Comp</em> (compresor) y <em>SC src</em> (elige qué pista, ej. el bombo en T1, comprime al resto de la mezcla en cada golpe para lograr el efecto <em>pumping</em>).</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section id="moduladores">
+      <h2 class="sec-title"><span class="num">11</span> Moduladores (LFOs)</h2>
+      <p>Cada escena tiene <strong>8 ranuras de modulación</strong> (icono <strong>MOD</strong> o botón <kbd>L3</kbd>) para mover parámetros automáticamente:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Función</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>TR</code></td><td>Pista de destino (T1 a T5).</td></tr>
+            <tr><td><code>D</code></td><td>Parámetro a modular (Filtro, Tono, Volumen, Panorama, FM Ratio, etc.).</td></tr>
+            <tr><td><code>SP</code></td><td>Velocidad del ciclo (desde 1/16 de nota hasta 8 compases).</td></tr>
+            <tr><td><code>WV</code></td><td>Forma de onda (Senoidal, Triángulo, Sierra, Cuadrada, <em>S&amp;H</em> aleatorio, Ruido).</td></tr>
+            <tr><td><code>DP</code></td><td>Profundidad/Intensidad (positivo suma, negativo resta; en <code>0</code> está apagado).</td></tr>
+            <tr><td><code>RN</code></td><td>Modo: <strong>FRE</strong> (continuo), <strong>TRG</strong> (se reinicia en cada nota), <strong>ONE</strong> (un ciclo por nota, como envolvente).</td></tr>
+            <tr><td><code>SM / SK</code></td><td>Suavizado (<em>Smoothing</em>) y deformación de onda (<em>Skew</em>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip">
+        <strong class="label">Truco Arpegiador</strong>
+        Asigna un modulador a <strong>Pitch</strong> (Tono) con onda de sierra (<em>Saw up</em>) o aleatoria (<em>S&amp;H</em>). Como BRIXEQ ajusta las notas a la escala activa, obtendrás un arpegiador automático.
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section id="song-mode">
+      <h2 class="sec-title"><span class="num">12</span> Modo Canción (Song Mode)</h2>
+      <p>Encadena escenas de forma lineal (hasta 128 filas) desde <kbd>SELECT</kbd> &rarr; <strong>Song mode</strong>. Cada fila sigue el formato <code>[SCN | BARS | T1 T2 T3 T4 T5 | TAG]</code>:</p>
+      <ul>
+        <li><strong>SCN:</strong> Escena base (<code>N*</code> si has modificado algún patrón o muteo respecto a la escena original).</li>
+        <li><strong>BARS:</strong> Duración de la fila en compases (<code>1x</code> a <code>99x</code>). Una fila con <code>-</code> detiene la canción.</li>
+        <li><strong>T1..T5:</strong> Permite sustituir el patrón de una pista concreta solo para esa fila, o pulsar <kbd>X</kbd> sobre ella para mutearla temporalmente.</li>
+        <li><strong>TAG:</strong> Etiqueta visual opcional (INTRO, DROP, CHORUS...) pulsando <kbd>B</kbd>.</li>
+      </ul>
+    </section>
+
+    <!-- 13 -->
+    <section id="archivos">
+      <h2 class="sec-title"><span class="num">13</span> Grabación y Guardado</h2>
+      <ul>
+        <li><strong>Grabar audio (Master Bounce):</strong> Menú <kbd>SELECT</kbd> &rarr; <strong>Start recording</strong>. Graba la salida estéreo en tiempo real (WAV 48 kHz / 16-bit) en <code>/mnt/SDCARD/BRIXEQ/RECORDINGS/</code>. Funciona independiente del transporte y descarta grabaciones de menos de 5 segundos.</li>
+        <li><strong>Guardar y Cargar:</strong> Desde <kbd>SELECT</kbd> &rarr; <strong>Save / Load</strong> en <code>/mnt/SDCARD/BRIXEQ/PROJECTS/</code> (<code>.brixeq</code>). Al estar fuera del directorio del paquete, las actualizaciones no borran tus proyectos ni grabaciones.</li>
+      </ul>
+    </section>
+
+    <!-- 14 -->
+    <section id="controles">
+      <h2 class="sec-title"><span class="num">14</span> Chuleta Rápida de Controles</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Botón / Combinación</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><kbd>D-pad</kbd></td><td>Mover el cursor</td></tr>
+            <tr><td><kbd>B</kbd> + <kbd>D-pad</kbd></td><td>Editar el valor del parámetro activo</td></tr>
+            <tr><td>Toque en <kbd>B</kbd></td><td>Crear nota (si está vacío) / Preescuchar / Doble toque: paso <em>Trigless</em></td></tr>
+            <tr><td><kbd>A</kbd></td><td>En paso: Cortar / Pegar (doble toque = Copiar). En otros ajustes: <strong>Resetear</strong></td></tr>
+            <tr><td><kbd>Y</kbd> + <kbd>D-pad</kbd></td><td>Seleccionar celdas (2 toques = toda la pista; 3 toques = todo el patrón)</td></tr>
+            <tr><td><kbd>X</kbd></td><td>Cambiar vista: <strong>Pasos &rarr; Patrones &rarr; Transposición</strong></td></tr>
+            <tr><td><kbd>L1</kbd> / <kbd>R1</kbd></td><td>Enfocar panel izquierdo / derecho</td></tr>
+            <tr><td><kbd>L2</kbd> / <kbd>R2</kbd></td><td><kbd>L2</kbd> = Copiar sin borrar; <kbd>R2</kbd> = Pegar sobrescribiendo</td></tr>
+            <tr><td><kbd>R1</kbd> + <kbd>A</kbd> / <kbd>R1</kbd> + <kbd>B</kbd></td><td>Copiar / Pegar en Patrones, Escenas, Moduladores y Master FX</td></tr>
+            <tr><td><kbd>L1</kbd> + <kbd>L2</kbd> / <kbd>R1</kbd> + <kbd>R2</kbd></td><td>Deshacer (<em>Undo</em>) / Rehacer (<em>Redo</em>)</td></tr>
+            <tr><td><kbd>L1</kbd> + <kbd>R1</kbd> + <kbd>B/Y/X/A</kbd></td><td>Aleatorizar (<em>Randomize</em>) selección (Niveles 1 al 4)</td></tr>
+            <tr><td><kbd>L3</kbd> / <kbd>R3</kbd></td><td>Abrir/cerrar Moduladores (<kbd>L3</kbd>) o Master FX (<kbd>R3</kbd>)</td></tr>
+            <tr><td><kbd>START</kbd></td><td>Reproducir desde el cursor / Pausar (<kbd>SELECT</kbd> + <kbd>START</kbd> = desde paso 0)</td></tr>
+            <tr><td><kbd>SELECT</kbd></td><td>Abrir menú principal (Nuevo, Guardar, Cargar, Grabar, Modo Canción, Salir)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section id="problemas">
+      <h2 class="sec-title"><span class="num">15</span> Solución de problemas rápidos</h2>
+      <ul>
+        <li><strong>El cursor parece bloqueado:</strong> Tienes un menú emergente abierto; pulsa <kbd>SELECT</kbd> o <kbd>A</kbd> para cerrarlo.</li>
+        <li><strong>La transposición no hace nada:</strong> Entra en la vista de transposición (<kbd>X</kbd>) y asegúrate de que la longitud (<em>Length</em>) en el pie de pista sea mayor que <code>1</code>.</li>
+        <li><strong>Chasquidos o cortes de audio:</strong> Reinicia la TrimUI Brick. El lanzador ya incluye el tamaño de búfer óptimo para NextUI.</li>
+      </ul>
+    </section>
+  </main>
+
+<footer class="footer" style="background-color: var(--bg-card); border-top: 1px solid var(--border); padding: 1.5rem 2rem; margin-top: 2rem; color: var(--text-muted);">
+      <p style="margin:0; font-size:0.88rem; line-height:1.4;">Manual inspirado en <a href="https://github.com/boorch/brixeq-pak" target="_blank" rel="noopener">brixeq-pak</a> por <strong>boorch</strong>. Transcripción y adaptación al español para <strong>BRIXEQ</strong> en <strong>TrimUI Brick</strong>.</p>
+    </footer>
+  </body>
+</html>
