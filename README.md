@@ -55,7 +55,7 @@ Verla online: https://alejandroid80.github.io/brixeq-manual/guia-lofi.html
 
 ## Créditos
 
-Manual creado a partir del proyecto **BRIXEQ** para TrimUI Brick. El diseño y la documentación originales provienen del repositorio [https://github.com/boorch/brixeq-pak](https://github.com/boorch/brixeq-pak) por **boorch**. Esta adaptación al español y la guía LoFi son obra de **alejandrodiazovh**.
+Manual creado a partir del proyecto **BRIXEQ** para TrimUI Brick. El diseño y la documentación originales provienen del repositorio [https://github.com/boorch/brixeq-pak](https://github.com/boorch/brixeq-pak) por **boorch**. Esta adaptación al español y la guía LoFi son obra de **alejandroid80**.
 
 ## Notas
 
