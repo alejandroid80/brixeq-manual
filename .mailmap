@@ -1,0 +1,12 @@
+# Mapea identidades de autoría anteriores a la cuenta principal del proyecto.
+# Si esa historia vuelve a aparecer o se afusiona, GitHub atribuye todos los
+# commits a una sola persona en lugar de listar cuentas por separado.
+#
+# Formato de git-mailmap: <identidad canónica> <identidad original del commit>
+#   https://git-scm.com/docs/git-mailmap
+#
+# Canonical identity first, then the original commit identity to be mapped.
+
+alejandroid80 <alejandroid80@users.noreply.github.com> opencode <opencode@users.noreply.github.com>
+alejandroid80 <alejandroid80@users.noreply.github.com> alejandrodiazovh <alejandrodiazovh@users.noreply.github.com>
+alejandroid80 <alejandroid80@users.noreply.github.com> alejandrodiazovh <>
